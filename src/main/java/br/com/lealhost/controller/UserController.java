@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lealhost.entities.User;
-import br.com.lealhost.service.UserService;
+import br.com.lealhost.services.UserService;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -23,10 +23,12 @@ public class UserController {
 	@Autowired
 	UserService service;
 
+	@GetMapping("")
 	public ResponseEntity<List<User>> findAll() {
 		List<User> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<User> findById(@PathVariable("id") Long id) {
 		User user = service.findById(id);
@@ -41,7 +43,7 @@ public class UserController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
-		service.deleteUser(id);
+		service.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
