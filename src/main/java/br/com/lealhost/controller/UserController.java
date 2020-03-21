@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lealhost.entities.User;
-import br.com.lealhost.services.UserService;
+import br.com.lealhost.services.UserServiceImpl;
 
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
 	
 	@Autowired
-	UserService service;
+	UserServiceImpl service;
 
 	@GetMapping("")
 	public ResponseEntity<List<User>> findAll() {
